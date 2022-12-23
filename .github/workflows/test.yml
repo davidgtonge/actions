@@ -54,6 +54,22 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
-          cat './published-app'
+          cat './published-app/README.md'
+
+  deploy-prod:
+    runs-on: 'ubuntu-latest'
+    environment: 'prod'
+    needs: [build, deploy-dev]
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: published
+          path: './published-app'
+      - name: Deply (fake)
+        run: |
+          echo Add other actions to build,
+          echo test, and deploy your project.
+          cat './published-app/README.md'
 
       

@@ -37,5 +37,23 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v3.1.1
         with:
+          name: published
           path: README.md
+
+  deploy-dev:
+    runs-on: 'ubuntu-latest'
+    environment: 'dev'
+    needs: build
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: published
+          path: './published-app'
+      - name: Deply (fake)
+        run: |
+          echo Add other actions to build,
+          echo test, and deploy your project.
+          cat './published-app'
+
       
